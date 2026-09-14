@@ -52,9 +52,6 @@ class N_QueensProblem(State):
         return True
 
     def is_goal(self):
-
-        # Se chegamos na coluna N,
-        # N rainhas foram colocadas validamente
         return self.column == self.size
 
 
@@ -74,18 +71,14 @@ def main():
         start = time.time()
         result = algorithm.search(
             state,
-            pruning='general'
+            m=N,
         )
         end = time.time()
 
         if result is not None:
             print("Solucao encontrada:")
-            print(result.env())
-            print(
-                "Tempo:",
-                end - start,
-                "segundos"
-            )
+            print(result.state.env())
+            print("Tempo:", end - start, "segundos")
         else:
             print("Nao encontrou solucao")
 
