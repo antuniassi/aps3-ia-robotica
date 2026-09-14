@@ -4,10 +4,10 @@ from aigyminsper.search.graph import State
 import numpy as np
 import time
 
-
 class N_QueensProblem(State):
 
     def __init__(self, size, board=None, column=0):
+        super().__init__(None)
         self.size = size
         self.column = column
 
@@ -52,10 +52,11 @@ class N_QueensProblem(State):
         return True
 
     def is_goal(self):
-        if self.column == self.size:
-            return True
 
-        return False
+        # Se chegamos na coluna N,
+        # N rainhas foram colocadas validamente
+        return self.column == self.size
+
 
     def description(self):
         return "N Queens Problem"
@@ -68,7 +69,6 @@ def main():
     for N in range(4, 9):
 
         print("N =", N)
-
         state = N_QueensProblem(N)
         algorithm = BuscaProfundidade()
         start = time.time()
